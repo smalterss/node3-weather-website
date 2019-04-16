@@ -1,5 +1,7 @@
 const request = require('request')
 
+
+
 const forecast = (latitude, longitude, callback) => {
     const url = 'https://api.darksky.net/forecast/a4764e9a1ca1e1636ea98f10b420b5f1/'+ longitude +','+ latitude
    
@@ -9,7 +11,7 @@ const forecast = (latitude, longitude, callback) => {
         }else if (body.code === 400) {
             callback('incorrect coordinates', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary +' It is currently ' + body.currently.temperature + ' degrees out. There is a ' + body.currently.precipProbability + '% chance of rain.')
+            callback(undefined, body.daily.data[0].summary +' It is currently ' + body.currently.temperature + ' degrees out with a high of '+ body.daily.data[0].temperatureMax + ' and a low of '+ body.daily.data[0].temperatureLow +'. There is a ' + body.currently.precipProbability + '% chance of rain.')
         }
     }
 )}
